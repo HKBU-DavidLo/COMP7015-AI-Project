@@ -1,0 +1,18 @@
+/**
+ * UserController
+ *
+ * @description :: Server-side actions for handling incoming requests.
+ * @help        :: See https://sailsjs.com/docs/concepts/actions
+ */
+
+
+module.exports = {
+
+  login: async function (req, res) {
+
+    if (req.method == "GET") return res.view('user/login', { theUser: req.session.username })
+
+    if (!req.body.username || !req.body.password) return res.badRequest()
+
+    sails.log(req.body.username)
+    let user = await User.findOne({ username: req.body.userna
